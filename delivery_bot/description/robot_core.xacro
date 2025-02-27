@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <!-- BASE LINK -->
+    <link name="base_link"></link>
+
+   <!-- BASE FOOTPRINT -->
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="base_footprint"></link>
+
+    <!-- CHASSIS LINK -->
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.5 0.0 0.2" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="1.0 0.7 0.4"/>
+            </geometry>
+            <material name="carbon_black"/>
+        </visual>
+    </link>
+
+    <!-- LEFT WHEEL LINK -->
+
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin xyz="0.0 0.4 0.0" rpy="-${pi/2} 0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.14" length="0.1"/>
+            </geometry>
+            <material name="dark_gray"/>
+        </visual>
+    </link>
+
+    <!-- RIGHT WHEEL LINK -->
+
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <origin xyz="0.0 -0.4 0.0" rpy="${pi/2} 0.0 0.0"/>
+        <axis xyz="0.0 0.0 -1.0"/>
+    </joint>
+
+    <link name="right_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.14" length="0.1"/>
+            </geometry>
+            <material name="dark_gray"/>
+        </visual>
+    </link>
+
+    <!-- LEFT CASTER WHEEL LINK -->
+
+    <joint name="left_caster_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_caster_wheel"/>
+        <origin xyz="0.6 0.4 0.0" rpy="-${pi/2} 0.0 0.0"/>
+        <axis xyz="0.0 0. 1.0"/>
+    </joint>
+
+    <link name="left_caster_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.14" length="0.1"/>
+            </geometry>
+            <material name="dark_gray"/>
+        </visual>
+    </link>
+
+    <!-- RIGHT CASTER WHEEL LINK -->
+
+    <joint name="right_caster_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_caster_wheel"/>
+        <origin xyz="0.6 -0.4 0.0" rpy="${pi/2} 0.0 0.0"/>
+        <axis xyz="0.0 0.0 -1.0"/>
+    </joint>
+
+    <link name="right_caster_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.14" length="0.1"/>
+            </geometry>
+            <material name="dark_gray"/>
+        </visual>
+    </link>
+
+    <!-- ITEM BASKET LINK -->
+
+    <joint name="basket_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="basket"/>
+        <origin xyz="0.0 0.0 0.4"/>
+    </joint>
+
+    <link name="basket">
+        <visual>
+            <origin xyz="0.35 0.0 0.3"/>
+            <geometry>
+                <box size="0.7 0.7 0.6"/>
+            </geometry>
+            <material name="deep_sci_fi_blue"/>        
+        </visual>
+    </link>
+
+
+</robot>

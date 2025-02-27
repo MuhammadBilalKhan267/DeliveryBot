@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- LEFT EYE LINK -->
+    <joint name="left_eye_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="left_eye"/>
+        <origin xyz="1.03 0.17 0.22"  rpy="0.0 -${pi/2} 0.0"/>
+    </joint>
+
+    <link name="left_eye">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.06"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!-- RIGHT EYE LINK -->
+    <joint name="right_eye_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="right_eye"/>
+        <origin xyz="1.03 -0.17 0.22"  rpy="0.0 -${pi/2} 0.0"/>
+    </joint>
+
+    <link name="right_eye">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.06"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!-- INNER LEFT EYE LINK -->
+    <joint name="left_inner_eye_joint" type="fixed">
+        <parent link="left_eye"/>
+        <child link="left_inner_eye"/>
+        <origin xyz="0.0 0.0 -0.03"/>
+    </joint>
+
+    <link name="left_inner_eye">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.01"/>
+            </geometry>
+            <material name="glowing_blue"/>
+        </visual>
+    </link>
+
+    <!-- INNER RIGHT EYE LINK -->
+    <joint name="right_inner_eye_joint" type="fixed">
+        <parent link="right_eye"/>
+        <child link="right_inner_eye"/>
+        <origin xyz="0.0 0.0 -0.03"/>
+    </joint>
+
+    <link name="right_inner_eye">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.01"/>
+            </geometry>
+            <material name="glowing_blue"/>
+        </visual>
+    </link>
+</robot>
