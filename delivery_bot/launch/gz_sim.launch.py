@@ -65,6 +65,28 @@ def generate_launch_description():
         arguments=["/camera/image_raw"]
     )
 
+    online_async_params = os.path.join(get_package_share_directory(package_name),'config', 'mapper_params_online_async.yaml')
+
+    online_aync = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(get_package_share_directory("slam_toolbox"), "launch", "online_async_launch.py")
+        ]), launch_arguments={"slam_params_file" : online_async_params}.items()
+    )
+
+    twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux_params.yaml')
+    # Default output topic is cmd_vel_out
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[twist_mux_params, {'use_sim_time': True}]
+    )
+
+    nav2 = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(get_package_share_directory("nav2_bringup"), "launch", "navigation_launch.py")
+        ]), launch_arguments={"use_sim_time": "true"}.items()
+    )
+
     return LaunchDescription([
         rsp,
         world_arg,
@@ -72,4 +94,7 @@ def generate_launch_description():
         spawn_entity,
         gz_bridge,
         gz_image_bridge,
+        online_aync,
+        twist_mux,
+        nav2,
     ])
