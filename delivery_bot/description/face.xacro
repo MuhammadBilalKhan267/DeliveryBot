@@ -5,7 +5,7 @@
     <joint name="left_eye_joint" type="fixed">
         <parent link="chassis"/>
         <child link="left_eye"/>
-        <origin xyz="1.03 0.17 0.22"  rpy="0.0 -${pi/2} 0.0"/>
+        <origin xyz="1.03 0.17 0.25"  rpy="0.0 -${pi/2} 0.0"/>
     </joint>
 
     <link name="left_eye">
@@ -15,13 +15,21 @@
             </geometry>
             <material name="black"/>
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.1" length="0.06"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.05" radius="0.1" length="0.06">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <!-- RIGHT EYE LINK -->
     <joint name="right_eye_joint" type="fixed">
         <parent link="chassis"/>
         <child link="right_eye"/>
-        <origin xyz="1.03 -0.17 0.22"  rpy="0.0 -${pi/2} 0.0"/>
+        <origin xyz="1.03 -0.17 0.25"  rpy="0.0 -${pi/2} 0.0"/>
     </joint>
 
     <link name="right_eye">
@@ -31,6 +39,14 @@
             </geometry>
             <material name="black"/>
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.1" length="0.06"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.05" radius="0.1" length="0.06">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <!-- INNER LEFT EYE LINK -->
@@ -47,6 +63,14 @@
             </geometry>
             <material name="glowing_blue"/>
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.01"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.01" radius="0.03" length="0.01">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <!-- INNER RIGHT EYE LINK -->
@@ -63,5 +87,13 @@
             </geometry>
             <material name="glowing_blue"/>
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.01"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.01" radius="0.03" length="0.01">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:inertial_cylinder>
     </link>
 </robot>
